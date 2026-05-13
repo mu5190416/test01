@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Bento Order",
+      "description": "Represents a single bento group buy order.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerName": { "type": "string" },
+        "items": { 
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "bentoName": { "type": "string" },
+              "price": { "type": "number" },
+              "quantity": { "type": "number" }
+            }
+          }
+        },
+        "totalPrice": { "type": "number" },
+        "orderDate": { "type": "string", "format": "date" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["customerName", "items", "totalPrice", "orderDate", "createdAt"]
+    },
+    "Admin": {
+      "title": "Admin User",
+      "description": "Authorized administrator email.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "addedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "addedAt"]
+    }
+  },
+  "firestore": {
+    "orders": {
+      "schema": "Order",
+      "description": "Collection of all bento orders."
+    },
+    "admins": {
+      "schema": "Admin",
+      "description": "Whitelist of authorized admin emails."
+    }
+  }
+}
